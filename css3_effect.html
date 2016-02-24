@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>CSS3特性效果演示</title>
+    <link rel="stylesheet" type="text/css" href="./css3_effect.css">
+    <script src="./jquery.js"></script>
+</head>
+<body>
+  <div class="block"></div>
+  <div class="contrl-btn"></div>
+  <script type="text/javascript">
+  (function(){
+    var animationParam ={
+      animationName:'',
+      animationDuration:''
+    }
+    function blockRemoveClass(){
+      $('.block').removeClass(animationParam.animationName).removeClass('animated');
+    }
+    var animationArr = ['bounce','flash','pulse','rubberBand','shake','swing','tdata','wobble','bounceIn'];
+    var lens = animationArr.length;
+    var contrlBtnContent = '';
+    for(var i=0;i<lens;i++){
+      contrlBtnContent += '<button class=" ' + animationArr[i] + '-btn">' + animationArr[i] + '</button>';
+    }
+    $('.contrl-btn').append($(contrlBtnContent));
+    $('.contrl-btn').click(function(e){
+        animationParam.animationName=$(e.target).attr('class').split('-')[0];
+        animationParam.animationDuration=1000;
+        $('.block').addClass(animationParam.animationName).addClass('animated');
+        setTimeout(blockRemoveClass,animationParam.animationDuration);
+
+
+    })
+  }())
+  </script>
+</body>
+</html>
